@@ -1,0 +1,26 @@
+---
+title: "Home"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is the page for the cancer-germline project. Below are links to analyses.
+
+I ran S-LDSC on annotations from ENCODE, Roadmap, TCGA, and other papers.
+
+* [Enrichment Analyses](s-ldsc_enrichment.html) (03/09/2020)
+
+Annotations were merged into broad categories (immune histones, immune open chromatin, etc.). Torus was ran to estimate prior probabilities per SNP. SuSiE was ran with L = 1. SuSiE was also ran with no prior probability, and the resulting PIPs were compared below.
+
+* [Effect of Torus Prior on Finemapping](annot_effect.html) (03/20/2020)
+
+Torus + SuSiE finemapping results
+
+* [Spreadsheets of finemapping results](https://docs.google.com/spreadsheets/d/1FGXaD3Bv7SfHsIB4QGyeCHS5obGzm4LysVkpifmpI9E/edit?usp=sharing) (03/20/2020)
+
+PolyFun + SuSiE finemapping results
+
+* [Spreadsheets of finemapping results](https://docs.google.com/spreadsheets/d/1TkdRiB8IWHowwuLEdGC3s48OAWtPcppJdtyuoooHaMs/edit?usp=sharing) (03/20/2020)

@@ -1,0 +1,205 @@
+---
+title: "PolyFun S-LDSC"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+### Intro
+
+I ran S-LDSC (comes with PolyFun) jointly on all cancer-related and immune annotations. I used a subset of the baseline LD annotations with MAF bins, LD, and other SNP statistics. I did this for four cancer GWAS: breast, prostate, colorectal, ovarian.
+
+Annotations were obtained from ENCODE and ROADMAP.
+
+### Comparison of Immune Enrichment
+
+Below is the LDSC enrichment (prop h2 / prop of SNPs) for ROADMAP immune ChIP-seq peaks. These were jointly run with cancer-specific annotations (shown below). 
+
+```{r}
+brca <- read.delim('../results/BRCA_enrichment.results', header=T, sep="", stringsAsFactors = F)
+brca <- brca[,c("Category","Enrichment")]
+prad <- read.delim('../results/PRAD_enrichment.results', header=T, sep="", stringsAsFactors = F)
+prad <- prad[, c("Category","Enrichment")]
+coad <- read.delim('../results/COAD_enrichment.results', header=T, sep="", stringsAsFactors = F)
+coad <- coad[, c("Category","Enrichment")]
+ov <- read.delim('../results/OV_enrichment.results', header=T, sep="", stringsAsFactors = F)
+ov <- ov[, c("Category","Enrichment")]
+enrich.df <- plyr::join_all(list(brca, prad, coad, ov), by = 'Category', type = 'inner')
+enrich.df <- enrich.df[c(1:101), ]
+colnames(enrich.df) <- c("Category","BRCA","PRAD","COAD","OV")
+enrich.df <- enrich.df[!(enrich.df$Category %in% "Cancer_Drivers"), ] # this is common to all so we remove it
+immune.annots <- enrich.df$Category
+row.names(enrich.df) <- enrich.df$Category
+enrich.df$Category <- NULL
+```
+
+```{r}
+labs <- sapply(strsplit(row.names(enrich.df), split = '-'), function(x){x[length(x)]})
+labs <- sapply(strsplit(labs, split='_'), function(x){x[length(x)]})
+enrich.df <- enrich.df[order(labs),]
+lab.df <- data.frame(Type=sort(labs), row.names = row.names(enrich.df))
+pheatmap::pheatmap(enrich.df, cluster_rows = F, cluster_cols = F, border_color = NA, annotation_row = lab.df, show_rownames = F)
+```
+
+### Breast cancer
+
+```{r}
+sldsc <- read.delim('../results/BRCA_enrichment.results', header=T, sep="",stringsAsFactors = F)
+sldsc <- sldsc[c(1:121),]
+sldsc$ci <- 1.96*sldsc$Enrichment_std_error
+non.immune <- sldsc[!(sldsc$Category %in% immune.annots), ]
+immune <- sldsc[(sldsc$Category %in% immune.annots), ]
+ggplot(non.immune, aes(x=Category, y=Enrichment)) + 
+  geom_point() + 
+  coord_flip() +
+  geom_hline(yintercept = 1, color="red", linetype="dashed") +
+  geom_errorbar(aes(ymin=Enrichment-ci, ymax=Enrichment+ci), width=.2) +
+  theme(text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(size=10)) +
+  ylab('Enrichment') + 
+  xlab('Category')
+```
+
+```{r, fig.width=10, fig.height=12}
+labs <- sapply(strsplit(immune$Category, split = '-'), function(x){x[length(x)]})
+labs <- sapply(strsplit(labs, split='_'), function(x){x[length(x)]})
+immune$Category <- factor(immune$Category, levels = immune$Category[order(labs)])
+
+ggplot(immune, aes(x=Category, y=Enrichment)) + 
+  geom_point() + 
+  coord_flip() +
+  geom_hline(yintercept = 1, color="red", linetype="dashed") +
+  geom_errorbar(aes(ymin=Enrichment-ci, ymax=Enrichment+ci), width=.2) +
+  theme(text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(size=10)) +
+  ylab('Enrichment') + 
+  xlab('Category')
+```
+
+### Prostate cancer
+
+```{r}
+sldsc <- read.delim('../results/PRAD_enrichment.results', header=T, sep="", stringsAsFactors = F)
+sldsc <- sldsc[c(1:129),]
+sldsc$ci <- 1.96*sldsc$Enrichment_std_error
+non.immune <- sldsc[!(sldsc$Category %in% immune.annots), ]
+immune <- sldsc[(sldsc$Category %in% immune.annots), ]
+non.immune$Category <- gsub(pattern = '_0', replacement = '', x = non.immune$Category)
+ggplot(non.immune, aes(x=Category, y=Enrichment)) + 
+  geom_point() + 
+  coord_flip() +
+  geom_hline(yintercept = 1, color="red", linetype="dashed") +
+  geom_errorbar(aes(ymin=Enrichment-ci, ymax=Enrichment+ci), width=.2) +
+  theme(text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(size=10)) +
+  ylab('Enrichment') + 
+  xlab('Category')
+```
+
+```{r,fig.width=10, fig.height=12}
+labs <- sapply(strsplit(immune$Category, split = '-'), function(x){x[length(x)]})
+labs <- sapply(strsplit(labs, split='_'), function(x){x[length(x)]})
+immune$Category <- factor(immune$Category, levels = immune$Category[order(labs)])
+ggplot(immune, aes(x=Category, y=Enrichment)) + 
+  geom_point() + 
+  coord_flip() +
+  geom_hline(yintercept = 1, color="red", linetype="dashed") +
+  geom_errorbar(aes(ymin=Enrichment-ci, ymax=Enrichment+ci), width=.2) +
+  theme(text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(size=10)) +
+  ylab('Enrichment') + 
+  xlab('Category')
+```
+
+
+
+
+### Colorectal cancer
+```{r}
+sldsc <- read.delim('../results/COAD_enrichment.results', header=T, sep="", stringsAsFactors = F)
+sldsc <- sldsc[c(1:117),]
+sldsc$ci <- 1.96*sldsc$Enrichment_std_error
+non.immune <- sldsc[!(sldsc$Category %in% immune.annots), ]
+immune <- sldsc[(sldsc$Category %in% immune.annots), ]
+ggplot(non.immune, aes(x=Category, y=Enrichment)) + 
+  geom_point() + 
+  coord_flip() +
+  geom_hline(yintercept = 1, color="red", linetype="dashed") +
+  geom_errorbar(aes(ymin=Enrichment-ci, ymax=Enrichment+ci), width=.2) +
+  theme(text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(size=10)) +
+  ylab('Enrichment') + 
+  xlab('Category')
+```
+
+```{r,fig.width=10, fig.height=12}
+labs <- sapply(strsplit(immune$Category, split = '-'), function(x){x[length(x)]})
+labs <- sapply(strsplit(labs, split='_'), function(x){x[length(x)]})
+immune$Category <- factor(immune$Category, levels = immune$Category[order(labs)])
+ggplot(immune, aes(x=Category, y=Enrichment)) + 
+  geom_point() + 
+  coord_flip() +
+  geom_hline(yintercept = 1, color="red", linetype="dashed") +
+  geom_errorbar(aes(ymin=Enrichment-ci, ymax=Enrichment+ci), width=.2) +
+  theme(text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(size=10)) +
+  ylab('Enrichment') + 
+  xlab('Category')
+```
+
+
+
+### Ovarian cancer
+
+None of these annotations were ovarian cancer specific. These are all from healthy ovary tissue. TCGA did not have OV cancer ATAC-seq peaks calls.
+
+```{r}
+sldsc <- read.delim('../results/OV_enrichment.results', header=T, sep="", stringsAsFactors = F)
+sldsc <- sldsc[c(1:108),]
+sldsc$ci <- 1.96*sldsc$Enrichment_std_error
+non.immune <- sldsc[!(sldsc$Category %in% immune.annots), ]
+immune <- sldsc[(sldsc$Category %in% immune.annots), ]
+ggplot(non.immune, aes(x=Category, y=Enrichment)) + 
+  geom_point() + 
+  coord_flip() +
+  geom_hline(yintercept = 1, color="red", linetype="dashed") +
+  geom_errorbar(aes(ymin=Enrichment-ci, ymax=Enrichment+ci), width=.2) +
+  theme(text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(size=10)) +
+  ylab('Enrichment') + 
+  xlab('Category')
+```
+
+```{r,fig.width=10, fig.height=12}
+labs <- sapply(strsplit(immune$Category, split = '-'), function(x){x[length(x)]})
+labs <- sapply(strsplit(labs, split='_'), function(x){x[length(x)]})
+immune$Category <- factor(immune$Category, levels = immune$Category[order(labs)])
+ggplot(immune, aes(x=Category, y=Enrichment)) + 
+  geom_point() + 
+  coord_flip() +
+  geom_hline(yintercept = 1, color="red", linetype="dashed") +
+  geom_errorbar(aes(ymin=Enrichment-ci, ymax=Enrichment+ci), width=.2) +
+  theme(text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_text(size=10)) +
+  ylab('Enrichment') + 
+  xlab('Category')
+```

@@ -1,0 +1,128 @@
+---
+title: "Effect of Torus Anootations"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source('../cancer-finemap/R/GWAS_funs_libs.R')
+```
+
+Below I compare the effect of prior probabilities generated from Torus.
+
+### Breast
+
+```{r}
+sumstats <- suppressMessages(vroom::vroom('../cancer-finemap/susie_finemapping/BRCA_susie_L1.txt.gz'))
+sumstats.unif <- suppressMessages(vroom::vroom('../cancer-finemap/susie_finemapping/BRCA_susie_L1_UNIFORM.txt.gz'))
+```
+
+```{r}
+annots <- list.files('../cancer-finemap/torus_bed_files/BRCA', pattern = '*.bed', full.names = T)
+sumstats <- annotator_merged(sumstats, annots)
+sumstats$isAnnot <- factor(ifelse(sumstats$annots != "",'Annotated','None'))
+sumstats$susie_pip_unif <- sumstats.unif$susie_pip
+```
+
+```{r}
+ggplot(sumstats, aes(x=susie_pip_unif, y=susie_pip, col=isAnnot)) + 
+  geom_point(alpha=0.7) + 
+  xlab('PIP (uniform)') + 
+  ylab('PIP') + 
+  geom_abline(slope = 1, color="red", linetype="dashed") + 
+  scale_color_manual(values = c('red','black')) + 
+  theme_bw() + 
+  theme(legend.title = element_blank(),
+        text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())
+```
+
+
+### Colorectal
+
+```{r}
+sumstats <- suppressMessages(vroom::vroom('../cancer-finemap/susie_finemapping/COAD_susie_L1.txt.gz'))
+sumstats.unif <- suppressMessages(vroom::vroom('../cancer-finemap/susie_finemapping/COAD_susie_L1_UNIFORM.txt.gz'))
+annots <- list.files('../cancer-finemap/torus_bed_files/COAD', pattern = '*.bed', full.names = T)
+```
+
+```{r}
+sumstats <- annotator_merged(sumstats, annots)
+sumstats$isAnnot <- factor(ifelse(sumstats$annots != "",'Annotated','None'))
+sumstats$susie_pip_unif <- sumstats.unif$susie_pip
+```
+
+```{r}
+ggplot(sumstats, aes(x=susie_pip_unif, y=susie_pip, col=isAnnot)) + 
+  geom_point(alpha=0.7) + 
+  xlab('PIP (uniform)') + 
+  ylab('PIP') + 
+  geom_abline(slope = 1, color="red", linetype="dashed") + 
+  scale_color_manual(values = c('red','black')) + 
+  theme_bw() + 
+  theme(legend.title = element_blank(),
+        text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())
+```
+
+
+### Prostate
+
+
+```{r}
+sumstats <- suppressMessages(vroom::vroom('../cancer-finemap/susie_finemapping/PRAD_susie_L1.txt.gz'))
+sumstats.unif <- suppressMessages(vroom::vroom('../cancer-finemap/susie_finemapping/PRAD_susie_L1_UNIFORM.txt.gz'))
+annots <- list.files('../cancer-finemap/torus_bed_files/PRAD', pattern = '*.bed', full.names = T)
+```
+
+```{r}
+sumstats <- annotator_merged(sumstats, annots)
+sumstats$isAnnot <- factor(ifelse(sumstats$annots != "",'Annotated','None'))
+sumstats$susie_pip_unif <- sumstats.unif$susie_pip
+```
+
+```{r}
+ggplot(sumstats, aes(x=susie_pip_unif, y=susie_pip, col=isAnnot)) + 
+  geom_point(alpha=0.7) + 
+  xlab('PIP (uniform)') + 
+  ylab('PIP') + 
+  geom_abline(slope = 1, color="red", linetype="dashed") + 
+  scale_color_manual(values = c('red','black')) + 
+  theme_bw() + 
+  theme(legend.title = element_blank(),
+        text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())
+```
+
+
+### Ovarian
+
+
+```{r}
+sumstats <- suppressMessages(vroom::vroom('../cancer-finemap/susie_finemapping/OV_susie_L1.txt.gz'))
+sumstats.unif <- suppressMessages(vroom::vroom('../cancer-finemap/susie_finemapping/OV_susie_L1_UNIFORM.txt.gz'))
+annots <- list.files('../cancer-finemap/torus_bed_files/OV', pattern = '*.bed', full.names = T)
+```
+
+```{r}
+sumstats <- annotator_merged(sumstats, annots)
+sumstats$isAnnot <- factor(ifelse(sumstats$annots != "",'Annotated','None'))
+sumstats$susie_pip_unif <- sumstats.unif$susie_pip
+```
+
+```{r}
+ggplot(sumstats, aes(x=susie_pip_unif, y=susie_pip, col=isAnnot)) + 
+  geom_point(alpha=0.7) + 
+  xlab('PIP (uniform)') + 
+  ylab('PIP') + 
+  geom_abline(slope = 1, color="red", linetype="dashed") + 
+  scale_color_manual(values = c('red','black')) + 
+  theme_bw() + 
+  theme(legend.title = element_blank(),
+        text = element_text(size=14),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())
+```
