@@ -17,10 +17,15 @@ Annotations were merged into broad categories (immune histones, immune open chro
 
 * [Effect of Torus Prior on Finemapping](annot_effect.html) (03/20/2020)
 
-Torus + SuSiE finemapping results
+Torus + SuSiE finemapping results for immune SNPs with PIP > 0.05
 
-* [Spreadsheets of finemapping results](https://docs.google.com/spreadsheets/d/1FGXaD3Bv7SfHsIB4QGyeCHS5obGzm4LysVkpifmpI9E/edit?usp=sharing) (03/20/2020)
+* [Spreadsheets of finemapping results](https://docs.google.com/spreadsheets/d/1MfWZtwy5h9ubmL7qoNPNLbHCS15WlDXUeqvXZmzDK5U/edit?usp=sharing) (03/24/2020)
 
-PolyFun + SuSiE finemapping results
+HiC data for GM12878 (LCLs) from Bing Ren et al. were obtained ( only the significant links were kept). These were merged with HiC data with CHiCAGO score > 5 for 17 immune primary cell types from Ulirsch, J.C., Lareau, C.A., Bao, E.L. et al. Interrogation of human hematopoiesis at single-cell and single-variant resolution. Nat Genet 51, 683–693 (2019).
 
-* [Spreadsheets of finemapping results](https://docs.google.com/spreadsheets/d/1TkdRiB8IWHowwuLEdGC3s48OAWtPcppJdtyuoooHaMs/edit?usp=sharing) (03/20/2020)
+Immune fine-mapped SNPs were matched to genes via the HiC data. A gene-level PIP is constructed at:
+
+* [HiC Gene PIPs](https://docs.google.com/spreadsheets/d/1C8O2uFupAgsIYMElahWP0LLt4rJo4k2bdOfgT9htkGE/edit?usp=sharing) (03/24/2020)
+
+The ones with obvious immune function are highlighted in red. 
+
