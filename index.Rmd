@@ -9,6 +9,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This is the page for the cancer-germline project. Below are links to analyses.
 
+
+## GWAS
+
+```{r fig.height=4, fig.width=8, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("img/gwas_info.PNG")
+grid.raster(img)
+```
+
+
+## Analyses
+
 I ran S-LDSC on annotations from ENCODE, Roadmap, TCGA, and other papers.
 
 * [Enrichment Analyses](s-ldsc_enrichment.html) (03/09/2020)
