@@ -15,7 +15,7 @@ Rscript R/clean_sumstats.R \
         $COLUMNS \
         $bigsnp_1kg \
         $ldBlocks_bed \
-        torus_ready_sumstats/"$PREFIX"_cleaned_sumstats.txt.gz
+        cleaned_sumstats/"$PREFIX"_cleaned_sumstats.txt.gz
 
 # set-up corresponding annotation directory
 mkdir -p annotations/"$PREFIX"
