@@ -38,7 +38,7 @@ Create a working directory and clone this repo into it
 ```
 mkdir my_project_directory
 cd my_project_directory
-
+git clone git@github.com:aselewa/finemap-cancer.git .
 ```
 
-`R/clean_sumstats
+
