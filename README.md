@@ -77,7 +77,7 @@ IMPORTANT: you can have multiple summary statistics in the `cleaned_sumstats/` f
 
 ### Step 3. Annotations
 
-Annotations should be a bed-file with only the first 3 columns: chromosome, start, end. Chromosome should just be the number, no "chr" and should be in hg19/b37 coordinates. In your project directory, you should see a folder called `annotations/` Go into this. You should now see a folder called `{prefix}/` where `prefix` is what you choose in step 2. Place your annotation file (`.bed` extension in here). 
+Annotations should be a `.bed` file with only the first 3 columns: chromosome, start, end. Chromosome should just be the number, no "chr" and should be in hg19/b37 coordinates. In your project directory, you should see a folder called `annotations/` Go into this. You should now see a folder called `{prefix}/` where `prefix` is what you choose in step 2. Place your annotation file (`.bed` extension in here). 
 
 It may be useful to look at existing annotations that I placed at `/project2/xinhe/CANCER_GERMLINE/ANNOTATIONS/`
 
