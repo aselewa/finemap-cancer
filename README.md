@@ -56,7 +56,7 @@ Example:
                 "ColCa"
 ```
 
-If this worked, you should see a folder called `cleaned_sumstats` and inside there is `{prefix}_cleaned_sumstats.txt.gz` inside. The first few lines of the new file should look like:
+This can take about 10 minutes depending on the size of your GWAS. If this worked, you should see a folder called `cleaned_sumstats` and inside there is `{prefix}_cleaned_sumstats.txt.gz` inside. The first few lines of the new file should look like:
 
 ```
 zcat ColCa_cleaned_sumstats.txt.gz | head -n 5
