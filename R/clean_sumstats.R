@@ -1,6 +1,8 @@
 
 source('R/GWAS_funs_libs.R')
 
+print('Cleaning summary statistics...')
+
 args <- commandArgs(trailingOnly=T)
 sumstats <- vroom::vroom(args[1], col_names = T)
 cols.to.keep <- unlist(strsplit(as.character(args[2]), split=','))
@@ -17,4 +19,7 @@ cleaned_sumstats <- merge.bigsnp.gwas(cleaned_sumstats, bigsnp.1kg)
 # assign each snp to an LD block
 cleaned_sumstats <- assign.locus.snp(cleaned.sumstats = cleaned_sumstats, ldBed = ldBlocks_bed)
 
+print('Writing output..')
 vroom::vroom_write(cleaned_sumstats, outName)
+
+print('Done!')
