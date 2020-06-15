@@ -96,7 +96,7 @@ With your project directory (`my_project_directory`) from earlier, you should no
 To run the pipeline, execute the following:
 
 ```
-sbatch submit_snake.sbatch`
+sbatch submit_snake.sbatch
 ```
 
 Make sure the job is running:
