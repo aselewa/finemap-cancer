@@ -7,7 +7,7 @@ PREFIX=$3
 bigsnp_1kg="/project2/xinhe/1kg/bigsnpr/EUR_variable_1kg.rds"
 ldBlocks_bed="/project2/xinhe/CANCER_GERMLINE/ANNOTATIONS/Euro_LD_Chunks.bed"
 
-mkdir -p torus_ready_sumstats
+mkdir -p cleaned_sumstats
 
 # colorectal
 Rscript R/clean_sumstats.R \ 
@@ -18,4 +18,4 @@ Rscript R/clean_sumstats.R \
         torus_ready_sumstats/"$PREFIX"_cleaned_sumstats.txt.gz
 
 # set-up corresponding annotation directory
-mkdir -p torus_bed_files/"$PREFIX"
+mkdir -p annotations/"$PREFIX"
