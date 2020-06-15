@@ -39,21 +39,5 @@ Rscript R/clean_sumstats.R \
         $bigsnp_1kg \
         $ldBlocks_bed \        
         torus_ready_sumstats/BRCA_sumstats.txt.gz
-        
-# breast er-pos
-Rscript R/clean_sumstats.R \
-"$SUMSTATS"/brca_raw_sumstats.txt.gz \
-chr,position_b37,bcac_onco2_erpos_beta,bcac_onco2_erpos_se,a0,a1,phase3_1kg_id,bcac_onco2_erpos_P1df_Wald \
-$bigsnp_1kg \
-$ldBlocks_bed \
-torus_ready_sumstats/BRCA_erpos_cleaned_sumstats.txt.gz
-
-# breast er-neg
-Rscript R/clean_sumstats.R \
-"$SUMSTATS"/brca_raw_sumstats.txt.gz \
-chr,position_b37,bcac_onco2_erneg_beta,bcac_onco2_erneg_se,a0,a1,phase3_1kg_id,bcac_onco2_erneg_P1df_Wald \
-$bigsnp_1kg \
-$ldBlocks_bed \
-torus_ready_sumstats/BRCA_erneg_cleaned_sumstats.txt.gz
 
 
