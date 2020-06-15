@@ -98,7 +98,17 @@ IMPORTANT: you can place as many bed-files/annotations in the `prefix` directory
 
 We are now ready to run the main pipeline for finemapping.
 
-With your project directory (`my_project_directory`) from earlier, you should now see `cleaned_sumstats` and `annotations/`. 
+With your project directory (`my_project_directory`) from earlier, you should now see a file called `torus_susie_snakemake.py`. Open this file using Vim or nano and edit the variable called `pd`, by placing the full path to your working directory.
+
+```
+pd = 'YOUR PROJCT DIRECTORY'
+```
+
+Example:
+```
+pd = '/project2/xinhe/alan/Cancer/mydir'
+```
+
 To run the pipeline, execute the following:
 
 ```
