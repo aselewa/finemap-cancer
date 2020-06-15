@@ -9,18 +9,21 @@ logdir = "log/"
 if not os.path.isdir(logdir):
   os.mkdir(logdir)
 
-pd = '/project2/xinhe/alan/Cancer/GERMLINE/cancer-finemap/'
-torus = '/project2/xinhe/software/dap/torus_src/torus'
+# REQUIRED
+pd = 'PROJECT DIRECTORY HERE'
 
-# Inputs (summary stats, a directory of annotations)
+# Inputs (summary stats, a directory of annotations) REQUIRED
 cleaned_sumstats = pd + 'torus_ready_sumstats/'
 bed_dir = pd + 'torus_bed_files/'
-bigsnp_1kg = '/project2/xinhe/1kg/bigsnpr/EUR_variable_1kg.rds'
 
-# Outputs created
+# Outputs created (DO NOT EDIT)
 torus_output = pd + 'torus_output/'
 annotations = pd + 'torus_annotations/'
 finemapping = pd + 'susie_finemapping/'
+
+# software/metadata (DO NOT EDIT)
+torus = '/project2/xinhe/software/dap/torus_src/torus'
+bigsnp_1kg = '/project2/xinhe/1kg/bigsnpr/EUR_variable_1kg.rds'
 
 # Global wildcards
 traits = glob_wildcards(cleaned_sumstats + "{traits}_cleaned_sumstats.txt.gz").traits
