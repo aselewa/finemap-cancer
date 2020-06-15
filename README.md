@@ -41,4 +41,17 @@ cd my_project_directory
 git clone git@github.com:aselewa/finemap-cancer.git .
 ```
 
+Run the preprocessing step with THREE arguments:
+```
+./preprocess.sh SUMSTATS COLUMNS prefix
+```
+* SUMSTATS : full path to your summary statistics
+* COLUMNS: a comma(,) delimited string with the columns we described above! Make sure they are in the order described above.
+* prefix: a meaningful name for the cancer/data type. i.e. BrCa for breast cancer
+
+If this worked, you should see a folder called `torus_ready_sumstats` and inside there is `prefix_sumstats.txt.gz`
+
+```
+
+```
 
