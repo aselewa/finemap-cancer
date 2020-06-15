@@ -17,3 +17,5 @@ Rscript R/clean_sumstats.R \
         $ldBlocks_bed \
         torus_ready_sumstats/"$PREFIX"_cleaned_sumstats.txt.gz
 
+# set-up corresponding annotation directory
+mkdir -p torus_bed_files/"$PREFIX"
