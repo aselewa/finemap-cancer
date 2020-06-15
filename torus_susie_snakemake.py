@@ -13,8 +13,8 @@ if not os.path.isdir(logdir):
 pd = 'PROJECT DIRECTORY HERE'
 
 # Inputs (summary stats, a directory of annotations) REQUIRED
-cleaned_sumstats = pd + 'torus_ready_sumstats/'
-bed_dir = pd + 'torus_bed_files/'
+cleaned_sumstats = pd + 'cleaned_sumstats/'
+bed_dir = pd + 'annotations/'
 
 # Outputs created (DO NOT EDIT)
 torus_output = pd + 'torus_output/'
