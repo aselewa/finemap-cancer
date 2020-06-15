@@ -67,6 +67,8 @@ chr     pos     a0      a1      beta    se      snp     pval    zscore  og_index
 1       13550   A       G       0.13184 0.11236 1       0.24066 1.173371306514774       7       11      1
 ```
 
+IMPORTANT: you can have multiple summary statistics in the `torus_ready_sumstats` folder. Just run the `preprocess.sh` recipe for each summary statistics trait. MAKE SURE THEY HAVE DIFFERENT PREFIX! 
+
 ### Step 3. Annotations
 
 Annotations should be a bed-file with only the first 3 columns: chromosome, start, end. Chromosome should just be the number, no "chr" and should be in hg19/b37 coordinates. In your project directory, you should see a folder called `torus_bed_files/` Go into this. You should now see a folder called `{prefix}/` where `prefix` is what you choose in step 2. Place your annotation file (`.bed` extension in here). 
@@ -83,6 +85,8 @@ head mybed.bed
 1       713254  715133
 1       762120  763780
 ```
+
+IMPORTANT: you can place as many bed-files/annotations in the `prefix` directory as you want! Just make sure they have different names. These are the annotations that will be used for this specific trait.
 
 ### Step 4. Running finemapping
 
