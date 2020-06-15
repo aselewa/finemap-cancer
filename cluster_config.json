@@ -1,0 +1,19 @@
+{
+    "__default__" :
+    {
+      "mem" : 10000,
+      "n" : 1,
+      "tasks" : 1,
+      "name" : "{rule}-{wildcards}",
+       "logfile": "log/snake-{rule}-{wildcards}-%j.out",
+      "partition": "broadwl"
+    },
+    "run_finemapping":
+   {
+      "mem": 55G
+   },
+   "run_finemapping_uniform":
+   {
+     "mem": 55G
+   }
+}
