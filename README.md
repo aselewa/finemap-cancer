@@ -67,11 +67,11 @@ chr     pos     a0      a1      beta    se      snp     pval    zscore  og_index
 1       13550   A       G       0.13184 0.11236 1       0.24066 1.173371306514774       7       11      1
 ```
 
-IMPORTANT: you can have multiple summary statistics in the `cleaned_sumstats` folder. Just run the `preprocess.sh` recipe for each summary statistics trait. MAKE SURE THEY HAVE DIFFERENT PREFIX! 
+IMPORTANT: you can have multiple summary statistics in the `torus_ready_sumstats` folder. Just run the `preprocess.sh` recipe for each summary statistics trait. MAKE SURE THEY HAVE DIFFERENT PREFIX! 
 
 ### Step 3. Annotations
 
-Annotations should be a bed-file with only the first 3 columns: chromosome, start, end. Chromosome should just be the number, no "chr" and should be in hg19/b37 coordinates. In your project directory, you should see a folder called `annotations/` Go into this. You should now see a folder called `{prefix}/` where `prefix` is what you choose in step 2. Place your annotation file (`.bed` extension in here). 
+Annotations should be a bed-file with only the first 3 columns: chromosome, start, end. Chromosome should just be the number, no "chr" and should be in hg19/b37 coordinates. In your project directory, you should see a folder called `torus_bed_files/` Go into this. You should now see a folder called `{prefix}/` where `prefix` is what you choose in step 2. Place your annotation file (`.bed` extension in here). 
 
 It may be useful to look at existing annotations that I placed at `/project2/xinhe/CANCER_GERMLINE/ANNOTATIONS/`
 
