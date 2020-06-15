@@ -15,5 +15,5 @@ Rscript R/clean_sumstats.R \
         $COLUMNS \
         $bigsnp_1kg \
         $ldBlocks_bed \
-        torus_ready_sumstats/"$PREFIX"_sumstats.txt.gz
+        torus_ready_sumstats/"$PREFIX"_cleaned_sumstats.txt.gz
 
