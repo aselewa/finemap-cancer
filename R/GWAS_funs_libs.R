@@ -170,12 +170,12 @@ run.susie <- function(sumstats, ref_panel, ldchunk, L, prior){
   
   sub.sumstats <- sumstats[sumstats$locus == ldchunk, ]
   if(nrow(sub.sumstats) > 1){
-    X <- ref_panel$genotypes[ , sub.sumstats$bigSNP_index]
+    X <- ref_panel$genotypes[ ,sub.sumstats$bigSNP_index]
     X <- scale(X, center = T, scale = T)
     zhat <- sub.sumstats$zscore
     R <- cov2cor((crossprod(X) + tcrossprod(zhat))/nrow(X))
     if(prior){
-      res <- susie_rss(z = zhat, prior_weights = sub.sumstats$torus_pip, R = R, L = L, check_z = FALSE)
+      res <- susie_rss(z = zhat, prior_weights = sub.sumstats$torus_pip, R = R, L = L)
     }
     else{
       res <- susie_rss(z = zhat, R = R, L = L)
@@ -183,7 +183,6 @@ run.susie <- function(sumstats, ref_panel, ldchunk, L, prior){
     return(res)
   }
 }
-
 # merges susie results with original summary statistics data frame
 # ASSUMES L = 1! ONLY ONE CREDIBLE SET PER LOCUS! 
 merge_susie_sumstats <- function(susie_results, sumstats){
