@@ -15,7 +15,7 @@ devtools::install_github("stephenslab/susieR@0.9.0")
 BiocManager::install(c("GenomicRanges", "plyranges","rtracklayer"))
 ```
 
-**Step 1.** 
+### Step 1. Summary statistics 
 
 Obtain summary statistics and place them here
 `/project2/xinhe/CANCER_GERMLINE/SUMMARY_STATISTICS/`
@@ -32,8 +32,13 @@ You will need summary statistics with the following 8 columns:
 
 Write down the column names somewhere for you will need them next.
 
-**Step 2.** 
+### Step 2. Pre-processing
 
-Munge/clean summary statistics
+Create a working directory and clone this repo into it
+```
+mkdir my_project_directory
+cd my_project_directory
+
+```
 
 `R/clean_sumstats
