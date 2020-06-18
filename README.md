@@ -15,12 +15,6 @@ devtools::install_github("stephenslab/susieR@0.9.0")
 BiocManager::install(c("GenomicRanges", "plyranges","rtracklayer"))
 ```
 
-Also make sure to add our group `miniconda` to your PATH (required for using Snakemake)
-
-```
-export PATH=/project2/xinhe/software/miniconda3/bin:$PATH
-```
-
 ### Step 1. Summary statistics 
 
 Obtain summary statistics and place them here
