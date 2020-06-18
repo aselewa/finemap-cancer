@@ -7,8 +7,9 @@
 #SBATCH --tasks-per-node=4
 
 module load R/3.5.1
+SNAKEMAKE="/project2/xinhe/software/miniconda3/bin/snakemake"
 
-snakemake \
+$SNAKEMAKE \
     -kp \
     --ri \
     -j 150 \
